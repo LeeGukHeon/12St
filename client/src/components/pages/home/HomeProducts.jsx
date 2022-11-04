@@ -1,7 +1,7 @@
 import React from "react";
-import Product from "./Product";
+import Product from "./HomeProduct";
 
-import classes from "./Products.module.css";
+import classes from "./HomeProducts.module.css";
 
 const Products = ({ title }) => {
   return (

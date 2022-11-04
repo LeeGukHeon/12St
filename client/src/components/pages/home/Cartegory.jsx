@@ -1,8 +1,8 @@
 import React from "react";
+import Card from "../../UI/Card";
 
 import classes from "./Cartegory.module.css";
 import CategoryItem from "./CategoryItem";
-import Card from "./UI/Card";
 
 const Cartegory = () => {
   return (

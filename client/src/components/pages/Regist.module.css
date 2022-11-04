@@ -1,5 +1,6 @@
 .regist {
   height: 100vh;
+  padding: 50px 0;
 
   border: 1px solid var(--navy-color);
 
@@ -12,13 +13,58 @@
 .regist-input {
   width: 40%;
   height: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
+}
+
+.regist-input label {
+  font-weight: bold;
+  color: var(--black-color);
 }
 
 .regist-input input {
   width: 100%;
   height: 100%;
 
+  margin-top: 10px;
+  padding: 20px 5px;
+
   border: 1px solid var(--navy-color);
   border-radius: 5px;
+
+  font-family: inherit;
+}
+
+.regist-input-gnder {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.regist-input-gender input {
+  width: 18px;
+}
+
+.regist-input-gender span {
+  margin-right: 20px;
+}
+
+.regist-input-phone {
+  display: flex;
+
+  height: 42px;
+}
+
+.regist-input-phone select {
+  flex: 1;
+  text-align: center;
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.regist-input-phone input {
+  flex: 3;
+  height: 10px;
 }

@@ -1,8 +1,8 @@
 import React from "react";
 
-import Card from "../components/UI/Card";
+import Card from "../../UI/Card";
 
-import classes from "./Product.module.css";
+import classes from "./HomeProduct.module.css";
 
 const DUMMY_URL =
   "https://cdn.011st.com/11dims/resize/x300/11src/pd/v2/8/4/4/3/3/0/Xbjtt/5090844330_L300.jpg";

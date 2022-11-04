@@ -1,7 +1,7 @@
 import React from "react";
-import Banner from "../Banner";
-import Cartegory from "../Cartegory";
-import Products from "../Products";
+import Banner from "./home/Banner";
+import Cartegory from "./home/Cartegory";
+import Products from "./home/HomeProducts";
 
 const Home = () => {
   return (

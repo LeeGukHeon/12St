@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import SectionUserInfoInput from "./SectionUserInfoInput";
 import RegistSection from "./RegistSection";
-import RegistSectionInput from "./SectionUserInfoInput";
 import Clause from "./Clause";
 
 import kakao from "../../../assets/icons/kakaoLogin.png";
@@ -14,10 +14,29 @@ import apple from "../../../assets/icons/appleLogin.png";
 import classes from "./Regist.module.css";
 
 const Regist = () => {
+  const [formIsValid, setFormIsValid] = useState();
+  const [userInfo, setUserInfo] = useState();
+
   const navigate = useNavigate();
 
+  const handleformIsValid = (isValid) => {
+    setFormIsValid(isValid);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // formIsValid가 true이면 입력 유효성 중 최소 하나는 false
+    if (formIsValid) {
+      console.log("fail");
+      return;
+    }
+
+    console.log("success");
+  };
+
   return (
-    <div className={classes.regist}>
+    <form className={classes.regist} onSubmit={handleSubmit}>
       <header className={classes["regist-header"]}>
         <h2>회원가입</h2>
       </header>
@@ -42,7 +61,7 @@ const Regist = () => {
       </section>
 
       <RegistSection title={"1 정보입력"}>
-        <RegistSectionInput />
+        <SectionUserInfoInput onFormIsValid={handleformIsValid} />
       </RegistSection>
       <RegistSection title="2 약관동의">
         <Clause />
@@ -54,14 +73,11 @@ const Regist = () => {
         >
           취소
         </button>
-        <button
-          className={classes["regist-control-regist"]}
-          onClick={() => navigate("/")}
-        >
+        <button type="submit" className={classes["regist-control-regist"]}>
           회원가입
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

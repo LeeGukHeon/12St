@@ -8,6 +8,7 @@ const UserInfoInput = ({
   text,
   value,
   onChange,
+  onBlur,
   children,
   className,
 }) => {
@@ -25,6 +26,7 @@ const UserInfoInput = ({
           id={id}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
         />
       </div>
     </React.Fragment>

@@ -24,6 +24,17 @@
   height: 28px;
 }
 
+.sectionUserInfoInput-error-text {
+  color: #ff4443;
+  text-align: start;
+  margin-bottom: 20px;
+}
+
+.hasError input {
+  border-color: #ff4443;
+  background-color: #fad3d3;
+}
+
 .sectionUserInfoInput-phone div {
   border: 1px solid #ccc;
   width: 80px;

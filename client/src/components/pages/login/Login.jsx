@@ -46,19 +46,6 @@ const Login = () => {
   // };
   const onSubmitLogin = async (e) => {
     e.preventDefault();
-    await axios
-      .post(
-        "http://localhost:5000/login",
-        { userID, userPW },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          navigate("/");
-        } else if (response.status === 403) {
-          console.log("err");
-        }
-      });
   };
   //useEffect로 비밀번호 보기 숨기기 결정
   useEffect(() => {

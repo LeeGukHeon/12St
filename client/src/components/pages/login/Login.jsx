@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import classes from "./Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import iconGoogle from "../../../assets/icons/googleLogin.png";
 import iconNaver from "../../../assets/icons/naverLogin.png";
@@ -9,6 +9,7 @@ import iconApple from "../../../assets/icons/appleLogin.png";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 const Login = () => {
+  const navigate = useNavigate();
   const [userID, setUserID] = useState("");
   const [userPW, setUserPW] = useState("");
   const [showPW, setShowPW] = useState(false);
@@ -17,29 +18,45 @@ const Login = () => {
   const onClickShowPW = () => {
     setShowPW(!showPW);
   };
+  // const onSubmitLogin = async (e) => {
+  //   e.preventDefault();
+  //   await axios
+  //     .post("http://localhost:5000/login", { userID, userPW })
+  //     .then((response) => {
+  //       if (response.data.status === 200) {
+  //         window.alert(response.data.message);
+
+  //         // localStorage.setItem("id", response.data.id);
+  //         // localStorage.setItem("pw", response.data.pw);
+  //         // localStorage.setItem("name", response.data.name);
+  //         // localStorage.setItem("email", response.data.email);
+  //         // localStorage.setItem("phone", response.data.phone);
+  //         // window.location = "/";
+  //       } else if (response.data.status === 400) {
+  //         window.alert(response.data.message);
+  //         window.location = "/login";
+  //       } else if (response.data.status === 404) {
+  //         window.alert(response.data.message);
+  //         window.location = "/regist";
+  //       } else {
+  //         window.alert("관리자에게 문의하세요.");
+  //         window.location = "/";
+  //       }
+  //     });
+  // };
   const onSubmitLogin = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:5000/login", { userID, userPW })
+      .post(
+        "http://localhost:5000/login",
+        { userID, userPW },
+        { withCredentials: true }
+      )
       .then((response) => {
-        if (response.data.status === 200) {
-          window.alert(response.data.message);
-
-          // localStorage.setItem("id", response.data.id);
-          // localStorage.setItem("pw", response.data.pw);
-          // localStorage.setItem("name", response.data.name);
-          // localStorage.setItem("email", response.data.email);
-          // localStorage.setItem("phone", response.data.phone);
-          // window.location = "/";
-        } else if (response.data.status === 400) {
-          window.alert(response.data.message);
-          window.location = "/login";
-        } else if (response.data.status === 404) {
-          window.alert(response.data.message);
-          window.location = "/regist";
-        } else {
-          window.alert("관리자에게 문의하세요.");
-          window.location = "/";
+        if (response.status === 200) {
+          navigate("/");
+        } else if (response.status === 403) {
+          console.log("err");
         }
       });
   };

@@ -10,17 +10,22 @@ const fs = require("fs");
 const app = express();
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-// import { auth } from "./token/token";
-const auth = require("./token/token");
-const cookie = require("cookie");
-
+const cookieParser = require("cookie-parser");
+const {
+  login,
+  accessToken,
+  refreshToken,
+  loginSuccess,
+  logout,
+} = require("./controller");
 const saltRounds = 10;
 
 // middleware
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("uploads"));
-app.use(cors());
+app.use(cors({ methods: ["GET", "POST"], credentials: true }));
 //나중에 멀터 업로드 처리
 
 // url
@@ -56,6 +61,13 @@ app.post("/regist", (req, res) => {
     });
   });
 });
+
+app.post("/login", login);
+app.get("/accesstoken", accessToken);
+app.get("/refreshtoken", refreshToken);
+app.get("/login/success", loginSuccess);
+app.post("/logout", logout);
+//인증
 
 // app.post("/login", (req, res) => {
 //   let sql = "SELECT * FROM users WHERE uId = ?;";
@@ -99,62 +111,62 @@ app.post("/regist", (req, res) => {
 //   };
 // };
 
-app.post("/login", (req, res, next) => {
-  const key = process.env.SECRET_KEY;
-  const uId = "";
-  let token = "";
-  let sql = "SELECT * FROM users WHERE uId = ?;";
-  db.query(sql, [req.body.userID], (err, user) => {
-    if (user[0] === undefined) {
-      res.send({
-        status: 404,
-        message: "아이디를 찾을수 없습니다. 회원가입 페이지로 이동합니다.",
-      });
-    } else {
-      bcrypt.compare(req.body.userPW, user[0].uPasswd, (err, result) => {
-        if (result) {
-          token = jwt.sign(
-            {
-              type: "JWT",
-              uId: user[0].uId,
-            },
-            key,
-            {
-              expiresIn: "15m",
-              issuer: "토큰발급자",
-            }
-          );
+// app.post("/login", (req, res, next) => {
+//   const key = process.env.SECRET_KEY;
+//   const uId = "";
+//   let token = "";
+//   let sql = "SELECT * FROM users WHERE uId = ?;";
+//   db.query(sql, [req.body.userID], (err, user) => {
+//     if (user[0] === undefined) {
+//       res.send({
+//         status: 404,
+//         message: "아이디를 찾을수 없습니다. 회원가입 페이지로 이동합니다.",
+//       });
+//     } else {
+//       bcrypt.compare(req.body.userPW, user[0].uPasswd, (err, result) => {
+//         if (result) {
+//           token = jwt.sign(
+//             {
+//               type: "JWT",
+//               uId: user[0].uId,
+//             },
+//             key,
+//             {
+//               expiresIn: "15m",
+//               issuer: "토큰발급자",
+//             }
+//           );
 
-          return res.send({
-            status: 200,
-            message: "로그인 성공",
-            token: token,
-          });
-        } else {
-          res.send({
-            status: 400,
-            message: "아이디 또는 비밀번호를 확인해주세요.",
-          });
-        }
-      });
-    }
-  });
-});
+//           return res.send({
+//             status: 200,
+//             message: "로그인 성공",
+//             token: token,
+//           });
+//         } else {
+//           res.send({
+//             status: 400,
+//             message: "아이디 또는 비밀번호를 확인해주세요.",
+//           });
+//         }
+//       });
+//     }
+//   });
+// });
 
-app.get("/payload", auth, (req, res) => {
-  const nickname = req.decoded.nickname;
-  const profile = req.decoded.profile;
-  return res.status(200).json({
-    code: 200,
-    message: "토큰이 정상입니다.",
-    data: {
-      nickname: nickname,
-      profile: profile,
-    },
-  });
-});
+// app.get("/payload", auth, (req, res) => {
+//   const nickname = req.decoded.nickname;
+//   const profile = req.decoded.profile;
+//   return res.status(200).json({
+//     code: 200,
+//     message: "토큰이 정상입니다.",
+//     data: {
+//       nickname: nickname,
+//       profile: profile,
+//     },
+//   });
+// });
 
-app.post("/login", (req, res) => {});
+// app.post("/login", (req, res) => {});
 
 //네이버 api 받아와서 db에 넣은 흔적
 /*

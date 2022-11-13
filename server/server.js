@@ -28,6 +28,30 @@ app.use(
 //나중에 멀터 업로드 처리
 
 // url
+app.post("/order/get/userData", (req, res) => {
+  const uId = req.body.uId;
+
+  let sql1 = "SELECT uName, uEmail, uPhone, uMile FROM users WHERE uId = ?;";
+
+  let sql2 = "SELECT * FROM deliveryaddr WHERE uId = ?;";
+
+  db.query(sql1 + sql2, [uId, uId], (err, results, field) => {
+    if (err) throw err;
+
+    // console.log(`유저정보 : ${results[0]}`);
+    // console.log(results[1]);
+
+    res.send({ userData: results[0], deliveryData: results[1] });
+  });
+
+  // db.query(sql1 + sql2, [uId, uId], (err, result) => {
+  //   console.log(result);
+  //   if (err) throw err;
+
+  //   // res.send(result);
+  // });
+});
+
 app.get("/api/get/products", (req, res) => {
   let sql = "SELECT DISTINCT * FROM products;";
   db.query(sql, (err, result) => {
@@ -50,7 +74,7 @@ app.get("/api/get/productinfo/:getIdx", (req, res) => {
   });
 });
 
-// id 중복 검사라서 get 사용
+// 아이디 중복검사
 app.post("/duplication", (req, res) => {
   const { uId } = req.body;
   let sql = "SELECT COUNT(uId) FROM users WHERE uId = ?;";
@@ -68,13 +92,19 @@ app.post("/duplication", (req, res) => {
 });
 
 app.post("/regist", (req, res) => {
-  const { uId, uName, uPasswd, uEamil, uPhone } = req.body;
-  let sql = "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, ?, NULL, NULL, NOW())";
+  const { uId, uName, uPasswd, uEamil, uPhone, uZipcode, uAddress, uBirth } =
+    req.body;
+  let sql =
+    "INSERT INTO users VALUES(NULL, ?, ?, ?, ?, ?, ?, ? , 1000, ?, 1, NOW());";
   bcrypt.hash(uPasswd, saltRounds, (err, hash_passwd) => {
-    db.query(sql, [uId, uName, hash_passwd, uEamil, uPhone], (err) => {
-      if (err) throw err;
-      res.send({ status: 200 });
-    });
+    db.query(
+      sql,
+      [uId, uName, hash_passwd, uEamil, uPhone, uZipcode, uAddress, uBirth],
+      (err) => {
+        if (err) throw err;
+        res.send({ status: 200 });
+      }
+    );
   });
 });
 

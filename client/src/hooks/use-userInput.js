@@ -16,7 +16,7 @@ const checkPhone = (value) => value.trim().length >= 11;
 
 const checkAdditionalAddress = (value) => value.trim().length >= 1;
 
-const checkBirth = (value) => value.trim().length === 8;
+const checkBirth = (value) => value.trim().length === 6;
 
 // 초기값 설정
 const initialInputState = {

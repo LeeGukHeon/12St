@@ -43,6 +43,95 @@
   padding: 10px 16px;
 }
 
+/* 배송 요청사항 컴포넌트 */
+.modalDeliveryMemo {
+  border-color: var(--navy-color);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 50px;
+}
+
+.modalDeliveryMemo header {
+  width: 100%;
+  height: 50px;
+  background-color: var(--navy-color);
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+}
+
+.modalDeliveryMemo section {
+  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 400px;
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modalDeliveryMemo-select {
+  width: 100%;
+  padding: 20px;
+
+  font-size: 20px;
+
+  border-bottom: 1px solid #ccc;
+}
+
+.modalDeliveryMemo-select input {
+  margin-right: 12px;
+}
+
+.modalDeliveryMemo-select__last {
+  border-bottom: none;
+}
+.modalDeliveryMemo-directMemo {
+  background-color: rgb(234, 234, 234);
+  width: 100%;
+  height: 100px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.modalDeliveryMemo-directMemo input {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid rgb(222, 222, 222);
+}
+
+.modalDeliveryMemo-control {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.modalDeliveryMemo-control button {
+  padding: 20px 40px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.modalDeliveryMemo-control__cancle {
+  background-color: #e4e4e4;
+  margin-right: 30px;
+}
+
+.modalDeliveryMemo-control__storage {
+  background-color: var(--navy-color);
+  color: white;
+}
+
 /* 배송지 정보 컴포넌트  */
 .order-deliveryInfo {
   margin-bottom: 50px;
@@ -219,6 +308,12 @@
   font-weight: 600;
 }
 
+.order-paymentInfo-table__useMileError {
+  margin-left: 20px;
+  font-weight: 500;
+  color: #ff4443;
+}
+
 .order-paymentInfo-table__payment {
   border-bottom: 1px solid #e4e4e4;
   padding: 10px 16px;
@@ -235,18 +330,15 @@
 
 .order-paymentInfo-table__payment__select input {
   margin-right: 5px;
+  width: 18px;
+  height: 18px;
 }
 
 .order-paymentInfo-table__payment__select span {
   margin-right: 20px;
 }
 
-.order-paymentInfo-table__payment__selectInfo {
-  margin-top: 20px;
-  border: 2px solid rgb(180, 180, 180);
-  background-color: #e4e4e4;
-  padding: 20px;
-}
+/* 주문페이지 컨트롤러 */
 
 .order-control {
   padding: 100px 0px;

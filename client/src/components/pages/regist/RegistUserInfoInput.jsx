@@ -328,7 +328,7 @@ const RegistUserInfoInput = () => {
           <div className={classes["sectionUserInfoInput-feedback"]}>
             {birthHasError && (
               <p className={classes["sectionUserInfoInput-error"]}>
-                8자리의 생년월일을 입력해주세요.
+                6자리의 생년월일을 입력해주세요.
               </p>
             )}
           </div>

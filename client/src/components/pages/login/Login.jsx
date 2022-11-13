@@ -64,9 +64,9 @@ const Login = ({ userToken }) => {
   };
   //useEffect로 비밀번호 보기 숨기기 결정
   useEffect(() => {
-    if (userToken.token != null) {
-      navigate("/");
-    }
+    // if (userToken.token != null) {
+    //   navigate("/");
+    // }
     const pwText = () => {
       if (!showPW) {
         pwTab.current.type = "password";

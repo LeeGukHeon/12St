@@ -1,0 +1,21 @@
+.orderPhone {
+  margin-top: 20px;
+  border: 2px solid rgb(180, 180, 180);
+  background-color: #e4e4e4;
+  padding: 20px;
+  width: 100%;
+}
+.orderPhone span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.orderPhone select {
+  width: 400px;
+  padding: 5px;
+  font-size: 16px;
+  font-family: inherit;
+  border-radius: 5px;
+  outline: none;
+  margin: 0 20px;
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import { Fragment } from "react";
 import classes from "./OrderComplete.module.css";
-import TotalAmount from "./TotalAmount";
 
 const OrderComplete = () => {
   return (
@@ -20,8 +19,6 @@ const OrderComplete = () => {
           <div>받는 주소</div>
           <div>배송 요청사항</div>
         </div>
-
-        <TotalAmount />
 
         <div className={classes.control}>
           <button className={classes["control-btn-detail"]}>

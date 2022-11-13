@@ -27,6 +27,11 @@ import CrlWrite from "./components/pages/myPage/CrlWrite";
 import Product from "./components/pages/productDetail/Product";
 import LogOut from "./components/pages/login/LogOut";
 import OrderDetail from "./components/pages/myPage/OrderDetail";
+import OrderAccount from "./components/pages/order/orderMethod/OrderAccount";
+import OrderCard from "./components/pages/order/orderMethod/OrderCard";
+import OrderCoperateCard from "./components/pages/order/orderMethod/OrderCoperateCard";
+import OrderPhone from "./components/pages/order/orderMethod/OrderPhone";
+import OrderNoneBank from "./components/pages/order/orderMethod/OrderNoneBank";
 
 function App() {
   const [userToken, setUserToken] = useState({
@@ -77,7 +82,15 @@ function App() {
             <Route path="/productsBest" element={<ProductsBest />} />
             <Route path="/productsCategory" element={<ProductsCategory />} />
             <Route path="/cart" element={<ProductCart />} />
-            <Route path="/order" element={<Order />} />
+
+            {/* 결제 */}
+            <Route path="/order/*" element={<Order />}>
+              <Route path="account" element={<OrderAccount />} />
+              <Route path="card" element={<OrderCard />} />
+              <Route path="coperateCard" element={<OrderCoperateCard />} />
+              <Route path="phone" element={<OrderPhone />} />
+              <Route path="noneAccount" element={<OrderNoneBank />} />
+            </Route>
             <Route path="/ordercomplete" element={<OrderComplete />} />
           </Routes>
         </main>

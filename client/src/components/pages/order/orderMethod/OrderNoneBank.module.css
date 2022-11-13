@@ -1,0 +1,62 @@
+.orderNoneBank {
+  color: #333;
+  margin: 20px 0;
+
+  border: 2px solid rgb(180, 180, 180);
+  background-color: #e4e4e4;
+  padding: 20px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.orderNoneBank-selectedCard {
+  border-bottom: 1px solid rgb(200, 200, 200);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.orderNoneBank-selectedCard span {
+  font-weight: bold;
+}
+
+.orderNoneBank-selectedCard select {
+  width: 400px;
+  padding: 5px;
+  font-size: 16px;
+  font-family: inherit;
+  border-radius: 5px;
+  outline: none;
+  margin: 0 20px;
+}
+
+.orderNoneBank-selectedCard-timeLimit {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.orderNoneBank-selectedCard-timeLimit__title {
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.orderNoneBank-info {
+  text-align: start;
+  font-weight: bold;
+  color: rgb(144, 144, 144);
+}
+
+.orderNoneBank-precautions-title {
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: start;
+}
+
+.orderNoneBank-precautions-list {
+  padding-left: 20px;
+}
+
+.orderNoneBank-precautions-list li {
+  margin-bottom: 10px;
+  list-style: circle;
+  color: rgb(144, 144, 144);
+}

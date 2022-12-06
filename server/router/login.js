@@ -49,7 +49,7 @@ router.post("/api/login", (req, res) => {
                     },
                     ACCESS_SECRET_KEY,
                     {
-                      expiresIn: "30m",
+                      expiresIn: "1m",
                       issuer: "12St",
                     }
                   );
@@ -122,7 +122,7 @@ router.get("/api/login/success", (req, res) => {
           },
           process.env.ACCESS_SECRET_KEY,
           {
-            expiresIn: "30m",
+            expiresIn: "1m",
             issuer: "12St",
           }
         );
